@@ -8,9 +8,11 @@ import com.devguys.itrevolutionhackaton.models.Drink;
  * Created by sergeyboy on 04.11.17.
  */
 
-@SuppressWarnings("javadoc")
+@SuppressWarnings({"javadoc", "unused"})
 public class AlgorithmUtills {
     private final static String TAG = AlgorithmUtills.class.getName();
+
+    private final static double SPIRT_DENSITY = 0.789;
 
     private AlgorithmUtills(){
 
@@ -40,23 +42,21 @@ public class AlgorithmUtills {
 
     /**
      *
-     * @param drinkGrams
-     * @param drinkDensity grams/milliliters
+     * @param drinkMilliliters
      * @param alcoholTurnovers maxValue 1
      * @return
      */
-    public static double getClearAlcoholInMilliliters(double drinkGrams, double drinkDensity, double alcoholTurnovers){
-        double drinkMilliliters = drinkGrams * drinkDensity;
+    public static double getClearAlcohol(double drinkMilliliters, double alcoholTurnovers){
         return drinkMilliliters * alcoholTurnovers;
     }
 
-    public static double getClearAlcoholInGrams(double drinkGrams, double drinkDensity, double alcoholTurnovers){
-        double clearAlcoholInMilliliters = getClearAlcoholInMilliliters(drinkGrams, drinkDensity, alcoholTurnovers);
-        return transformToGrams(clearAlcoholInMilliliters, drinkDensity);
+    public static double getClearAlcoholInGrams(double drinkMilliliters, double alcoholTurnovers){
+        double clearAlcoholInMilliliters = getClearAlcohol(drinkMilliliters, alcoholTurnovers);
+        return transformToGrams(clearAlcoholInMilliliters, SPIRT_DENSITY);
     }
 
     public static double getClearAlcoholInGrams(Drink drink){
-        return getClearAlcoholInGrams(drink.getGrams(), drink.getDensity(), drink.getAlcoholTurnovers());
+        return getClearAlcoholInGrams(drink.getMilliliters(), drink.getAlcoholTurnovers());
     }
 
     /**
@@ -80,7 +80,6 @@ public class AlgorithmUtills {
     }
 
     public static double improvedWidmarkAlgorithm(double clearAlcoholInGrams, double weight, double reductionCoefficient, long startTimeStamp, long currentTimeStamp){
-        Log.e(TAG, "improved, start: " + startTimeStamp + ", current: " + currentTimeStamp);
         double result = widmarkAlgorithm(clearAlcoholInGrams, weight, reductionCoefficient) - ((reductionCoefficient / 10 + 0.1d) * getHoursFromMilliseconds(currentTimeStamp - startTimeStamp));
         if(result >= 0d){
             return result;
@@ -94,8 +93,11 @@ public class AlgorithmUtills {
     }
 
     public static int getHoursFromMilliseconds(long milliseconds){
-        Log.e(TAG, "getHours: " + (int) (milliseconds / 3600000));
         return (int) (milliseconds / 3600000);
+    }
+
+    public static long getMillisecondsFromHours(int hours){
+        return (long) hours * 3600000;
     }
 
     public static double widmarkAlgorithm(double weight, double reductionCoefficient, Drink... drinks){
@@ -117,5 +119,9 @@ public class AlgorithmUtills {
     public static double widmarkAlgorithmCurrentTime(double weight, double reductionCoefficient, long startTimestamp, Drink... drinks){
         long currentTimestamp = System.currentTimeMillis();
         return improvedWidmarkAlgorithm(weight, reductionCoefficient, startTimestamp, currentTimestamp, drinks);
+    }
+
+    public static int getAlcoEndTimeInHours(double weight, double reductionCoefficient, Drink... drinks){
+        return (int) (widmarkAlgorithm(weight, reductionCoefficient, drinks) / (reductionCoefficient / 10 + 0.1d));
     }
 }

@@ -8,6 +8,8 @@ import java.util.List;
 import rx.Observable;
 
 public interface DataRepository {
+    //TODO Session remove
+    //TODO не забудь будь ласка про два метода отримання даних, перший - без параметрів, який повертає всі дані, а другий з long time, який повертає дані для яких виконується умова time < endTime;
 
     Observable<Account> login(String username, String password);
 
