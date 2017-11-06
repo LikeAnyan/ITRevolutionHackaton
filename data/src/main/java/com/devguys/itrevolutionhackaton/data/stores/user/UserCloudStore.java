@@ -2,18 +2,22 @@ package com.devguys.itrevolutionhackaton.data.stores.user;
 
 import com.devguys.itrevolutionhackaton.data.models.AccountModel;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import rx.Observable;
 
 public class UserCloudStore implements UserStore {
 
     private FirebaseAuth mAuth;
-    private FirebaseDatabase database;
+    private DatabaseReference database;
 
     public UserCloudStore(FirebaseAuth auth, FirebaseDatabase database) {
         this.mAuth = auth;
-        this.database = database;
+        this.database = database.getReference();
     }
 
     @Override
@@ -32,6 +36,8 @@ public class UserCloudStore implements UserStore {
     public Observable<AccountModel> signUp(String username, String password) {
         return Observable.create(subscriber -> mAuth.createUserWithEmailAndPassword(username, password).addOnCompleteListener(task -> {
             if(task.isSuccessful() && mAuth.getCurrentUser() != null) {
+                database.child("users").setValue(mAuth.getCurrentUser().getUid());
+
                 subscriber.onNext(new AccountModel());
                 subscriber.onCompleted();
             } else {
@@ -42,7 +48,24 @@ public class UserCloudStore implements UserStore {
 
     @Override
     public Observable<AccountModel> updateAccountInfo(AccountModel accountModel) {
-        return null;
+        return Observable.create(subscriber -> {
+            if(mAuth.getCurrentUser() != null) {
+                Map<String, Object> details = new HashMap<>();
+                details.put("userName", accountModel.getUserName());
+                details.put("avatar", accountModel.getAvatar());
+                details.put("birthday", accountModel.getBirthday());
+                details.put("male", accountModel.isMale());
+                details.put("weight", accountModel.getWeight());
+
+                // update cloud
+                DatabaseReference userRef = database.child("users").child(mAuth.getCurrentUser().getUid());
+                userRef.updateChildren(details);
+
+                // update UI
+                subscriber.onNext(accountModel);
+                subscriber.onCompleted();
+            } else subscriber.onError(new Throwable("You don't sign in!"));
+        });
     }
 
     @Override

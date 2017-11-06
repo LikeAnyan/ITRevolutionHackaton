@@ -6,6 +6,7 @@ import com.devguys.itrevolutionhackaton.ITRevolutionApp;
 import com.devguys.itrevolutionhackaton.R;
 import com.devguys.itrevolutionhackaton.base.BaseFragment;
 import com.devguys.itrevolutionhackaton.databinding.FragmentUpdateProfileBinding;
+import com.devguys.itrevolutionhackaton.models.Account;
 import com.devguys.itrevolutionhackaton.presenter.CreateProfilePresenter;
 import com.devguys.itrevolutionhackaton.util.UiUtills;
 
@@ -40,5 +41,11 @@ public class CreateProfileFragment extends BaseFragment<FragmentUpdateProfileBin
     @Override
     public void updateProfileFailed(String message) {
         UiUtills.showToast(message);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        presenter.updateProfile(new Account("Sergey Boychuk", System.currentTimeMillis(), true, 67, 0.6d, true));
     }
 }

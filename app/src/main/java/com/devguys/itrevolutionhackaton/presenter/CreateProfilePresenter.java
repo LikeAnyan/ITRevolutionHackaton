@@ -2,6 +2,7 @@ package com.devguys.itrevolutionhackaton.presenter;
 
 import android.util.Log;
 
+import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.devguys.itrevolutionhackaton.DataRepository;
 import com.devguys.itrevolutionhackaton.PreferencesManager;
@@ -11,6 +12,7 @@ import com.devguys.itrevolutionhackaton.view.update.CreateProfileView;
 
 import javax.inject.Inject;
 
+@InjectViewState
 public class CreateProfilePresenter extends MvpPresenter<CreateProfileView> {
 
     private DataRepository repository;
@@ -28,7 +30,7 @@ public class CreateProfilePresenter extends MvpPresenter<CreateProfileView> {
 
     public void updateProfile(Account account) {
         repository.updateAccountInfo(account)
-                .doOnNext(accountInfo -> preferencesManager.saveUserAccount(accountInfo))
+                .doOnNext(accountInfo -> preferencesManager.saveUserAccount(account))
                 .compose(RxTransformers.applyApiRequestSchedulers())
                 .subscribe(accountInfo -> getViewState().updateProfileSucceeded(), this::onError);
     }

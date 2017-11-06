@@ -3,16 +3,19 @@ package com.devguys.itrevolutionhackaton.models;
 @SuppressWarnings("unused")
 public class Account {
 
-    private long id;
     private String userName; // sets by user
+    private String avatar;
     private long birthday; // sets by user, need to determinate y.o., has influence on reductionCoefficient
     private boolean male; // sets by user, has influence on reductionCoefficient
     private double weight; // sets by user, has influence on reductionCoefficient
     private double reductionCoefficient; // sets by app, used in algorithm's
     private boolean useDevicesFingerprint; // sets by user in app to determinate use device's fingerprint or no
 
-    public Account(long id, String userName, long birthday, boolean male, double weight, double reductionCoefficient, boolean useDevicesFingerprint) {
-        this.id = id;
+    public Account() {
+
+    }
+
+    public Account(String userName, long birthday, boolean male, double weight, double reductionCoefficient, boolean useDevicesFingerprint) {
         this.userName = userName;
         this.birthday = birthday;
         this.male = male;
@@ -21,12 +24,12 @@ public class Account {
         this.useDevicesFingerprint = useDevicesFingerprint;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public void setBirthday(long birthday) {
@@ -49,12 +52,12 @@ public class Account {
         this.useDevicesFingerprint = useDevicesFingerprint;
     }
 
-    public long getId() {
-        return id;
-    }
-
     public String getUserName() {
         return userName;
+    }
+
+    public String getAvatar() {
+        return avatar;
     }
 
     public long getBirthday() {

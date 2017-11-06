@@ -2,13 +2,49 @@ package com.devguys.itrevolutionhackaton.data.models;
 
 public class AccountModel {
 
-    private long id;
-    private String userName; // sets by user
-    private long birthday; // sets by user, need to determinate y.o., has influence on reductionCoefficient
-    private boolean male; // sets by user, has influence on reductionCoefficient
-    private double weight; // sets by user, has influence on reductionCoefficient
-    private double reductionCoefficient; // sets by app, used in algorithm's
-    private boolean useDevicesFingerprint; // sets by user in app to determinate use device's fingerprint or no
+    private String userName;
+    private String avatar;
+    private long birthday;
+    private boolean male;
+    private double weight;
 
+    public String getUserName() {
+        return userName;
+    }
 
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public long getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(long birthday) {
+        this.birthday = birthday;
+    }
+
+    public boolean isMale() {
+        return male;
+    }
+
+    public void setMale(boolean male) {
+        this.male = male;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
 }

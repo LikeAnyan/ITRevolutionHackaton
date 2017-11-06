@@ -49,7 +49,7 @@ public class ITRevolutionApp extends Application {
                 .dataModule(new DataModule(new DataRepositoryImpl()))
                 .build();
 
-        account = new Account(1, "Sergey Boychuk", System.currentTimeMillis(), true, 67, 0.6d, true);
+        account = new Account("Sergey Boychuk", System.currentTimeMillis(), true, 67, 0.6d, true);
 
         // Every 15 minutes 100 grams vodka's, start two hours ago
         long timeValue = System.currentTimeMillis() - 2 * 60000 * 60;
