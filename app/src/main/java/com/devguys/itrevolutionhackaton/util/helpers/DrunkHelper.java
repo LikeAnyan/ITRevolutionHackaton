@@ -3,6 +3,7 @@ package com.devguys.itrevolutionhackaton.util.helpers;
 import com.devguys.itrevolutionhackaton.models.Account;
 import com.devguys.itrevolutionhackaton.models.Drink;
 import com.devguys.itrevolutionhackaton.util.AlgorithmUtills;
+import com.devguys.itrevolutionhackaton.util.drink.DrinkDataset;
 import com.github.mikephil.charting.data.PieEntry;
 
 import java.util.ArrayList;
@@ -16,9 +17,6 @@ import java.util.Map;
 
 @SuppressWarnings("javadoc")
 public class DrunkHelper {
-    private DrunkHelper(){
-
-    }
 
     public static double getAlcoholInBlood(Account account, List<Drink> drinkList){
         return AlgorithmUtills.widmarkAlgorithmCurrentTime(account.getWeight(), account.getReductionCoefficient(), drinkList);
@@ -37,21 +35,22 @@ public class DrunkHelper {
     public static List<PieEntry> getBeverageDrink(List<Drink> drinkList){
         Map map = getTypedDrinksMap(drinkList);
         List<PieEntry> pieEntries = new ArrayList<>();
-        for(Object key : map.keySet()){
+
+        for(Object key : map.keySet())
             pieEntries.add(new PieEntry((float) map.get(key), String.valueOf(key)));
-        }
+
         return pieEntries;
     }
 
-    public static Map getTypedDrinksMap(List<Drink> drinkList){
-        Map map = new HashMap();
+    private static Map getTypedDrinksMap(List<Drink> drinkList){
+        Map<String, Float> map = new HashMap<>();
+
         for(Drink drink : drinkList){
-            if(map.containsKey(drink.getType())){
-                map.put(drink.getType(), (float) map.get(drink.getType()) + (float) drink.getMilliliters());
-            } else{
-                map.put(drink.getType(), (float) drink.getMilliliters());
-            }
+            if(map.containsKey(DrinkDataset.getName(drink.getType())))
+                map.put(DrinkDataset.getName(drink.getType()), map.get(DrinkDataset.getName(drink.getType())) + (float) drink.getMilliliters());
+            else map.put(DrinkDataset.getName(drink.getType()), (float) drink.getMilliliters());
         }
+
         return map;
     }
 }

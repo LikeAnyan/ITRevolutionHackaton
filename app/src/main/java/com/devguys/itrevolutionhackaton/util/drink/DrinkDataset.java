@@ -65,6 +65,43 @@ public class DrinkDataset {
         this.alcoholTurnoversMax = alcoholTurnoversMax;
     }
 
+    public static String getName(@DrinkType int drinkType) {
+        switch (drinkType) {
+            case TYPE_KVASS:
+                return "Kvass";
+            case TYPE_BEER_LIGHT:
+                return "Beer Light";
+            case TYPE_BEER_DARK:
+                return "Beer dark";
+            case TYPE_VINE:
+                return "Vine";
+            case TYPE_TINCTURE:
+                return "Tincture";
+            case TYPE_LIQUOR:
+                return "Liquor";
+            case TYPE_VODKA:
+                return "Vodka";
+            case TYPE_TEQUILA:
+                return "Tequila";
+            case TYPE_BRANDY:
+                return "Brandy";
+            case TYPE_WHISKEY_LIGHT:
+                return "Whiskey Light";
+            case TYPE_WHISKEY_MEDIUM:
+                return "Whiskey Medium";
+            case TYPE_WHISKEY_HARD:
+                return "Whiskey Hard";
+            case TYPE_RUM:
+                return "Rum";
+            case TYPE_ABSINTHE:
+                return "Absinthe";
+            case TYPE_OTHER:
+                return "Other";
+        }
+
+        return "Other";
+    }
+
     public double getAlcoholTurnoversMin() {
         return alcoholTurnoversMin;
     }

@@ -60,9 +60,9 @@ public class ITRevolutionApp extends Application {
         timeValue += 15 * 60000;
         drinkList.add(DrinkFactory.createDrink(account.getWeight(), account.getReductionCoefficient(), 100, 0.4, DrinkDataset.TYPE_VODKA, timeValue));
         timeValue += 15 * 60000;
-        drinkList.add(DrinkFactory.createDrink(account.getWeight(), account.getReductionCoefficient(), 100, 0.4, DrinkDataset.TYPE_VODKA, timeValue));
+        drinkList.add(DrinkFactory.createDrink(account.getWeight(), account.getReductionCoefficient(), 100, 0.4, DrinkDataset.TYPE_RUM, timeValue));
         timeValue += 15 * 60000;
-        drinkList.add(DrinkFactory.createDrink(account.getWeight(), account.getReductionCoefficient(), 100, 0.4, DrinkDataset.TYPE_VODKA, timeValue));
+        drinkList.add(DrinkFactory.createDrink(account.getWeight(), account.getReductionCoefficient(), 100, 0.4, DrinkDataset.TYPE_BEER_DARK, timeValue));
     }
 
     public Account getAccount() {
