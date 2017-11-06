@@ -4,6 +4,8 @@ import android.util.Log;
 
 import com.devguys.itrevolutionhackaton.models.Drink;
 
+import java.util.List;
+
 /**
  * Created by sergeyboy on 04.11.17.
  */
@@ -116,9 +118,34 @@ public class AlgorithmUtills {
         return result;
     }
 
-    public static double widmarkAlgorithmCurrentTime(double weight, double reductionCoefficient, long startTimestamp, Drink... drinks){
+    public static double improvedWidmarkAlgorithm(double weight, double reductionCoefficient, long startTimestamp, long currentTimestamp, List<Drink> drinkList){
+        double result = 0d;
+        for(Drink drink : drinkList){
+            result += improvedWidmarkAlgorithm(getClearAlcoholInGrams(drink), weight, reductionCoefficient, startTimestamp, currentTimestamp);
+        }
+        return result;
+    }
+
+    public static double widmarkAlgorithmCurrentTime(double weight, double reductionCoefficient, Drink... drinks){
         long currentTimestamp = System.currentTimeMillis();
+        long startTimestamp = currentTimestamp;
+        for(Drink drink : drinks){
+            if(drink.getStartTime() < startTimestamp){
+                startTimestamp = drink.getStartTime();
+            }
+        }
         return improvedWidmarkAlgorithm(weight, reductionCoefficient, startTimestamp, currentTimestamp, drinks);
+    }
+
+    public static double widmarkAlgorithmCurrentTime(double weight, double reductionCoefficient, List<Drink> drinkList){
+        long currentTimestamp = System.currentTimeMillis();
+        long startTimestamp = currentTimestamp;
+        for(Drink drink : drinkList){
+            if(drink.getStartTime() < startTimestamp){
+                startTimestamp = drink.getStartTime();
+            }
+        }
+        return improvedWidmarkAlgorithm(weight, reductionCoefficient, startTimestamp, currentTimestamp, drinkList);
     }
 
     public static int getAlcoEndTimeInHours(double weight, double reductionCoefficient, Drink... drinks){

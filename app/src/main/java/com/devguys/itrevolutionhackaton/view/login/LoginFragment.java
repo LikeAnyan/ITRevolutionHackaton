@@ -48,4 +48,6 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> implements
     public void onButtonPressed(String text) {
 
     }
+
+
 }

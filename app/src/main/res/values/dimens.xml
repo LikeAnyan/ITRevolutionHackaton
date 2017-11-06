@@ -1,6 +1,7 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="space_between_content">8dp</dimen>
-    <dimen name="space_screen_left">16dp</dimen>
+    <dimen name="space_screen_vertical">16dp</dimen>
+    <dimen name="space_screen_horizontal">16dp</dimen>
     <dimen name="space_screen_right">16dp</dimen>
 </resources>

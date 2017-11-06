@@ -1,24 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <ScrollView
+<layout>
+    <data>
+        <variable name="account" type="com.devguys.itrevolutionhackaton.models.Account"/>
+    </data>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <RelativeLayout
+        android:layout_height="match_parent"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        </RelativeLayout>
-    </ScrollView>
+                <!--Block with username, buttons for edit etc-->
+                <RelativeLayout
+                    android:id="@+id/profile_content_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/profile_iv_avatar"
+                    android:layout_marginTop="-60dp"
+                    android:layout_marginLeft="@dimen/space_screen_horizontal"
+                    android:layout_marginRight="@dimen/space_screen_horizontal"
+                    android:layout_marginBottom="@dimen/space_screen_vertical"
+                    android:paddingLeft="@dimen/space_between_content"
+                    android:paddingRight="@dimen/space_between_content"
+                    android:background="@drawable/content_block_background"
+                    android:elevation="2dp" tools:targetApi="21">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_edit_black_24dp"
+                        android:layout_alignParentRight="true"
+                        android:padding="8dp" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/ic_add_black_24dp"
-        />
-</android.support.constraint.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/profile_tv_name"
+                        style="@style/TextAppearance.AppCompat.Headline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="68dp"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center"
+                        android:layout_marginBottom="@dimen/space_between_content"
+                        android:text="@{account.userName}"
+                        tools:text="Mock User With Very Looooooong name"
+                        />
+                </RelativeLayout>
+
+                <ImageButton
+                    android:id="@id/profile_iv_avatar"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="@dimen/space_screen_vertical"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/avatar_circular_border"
+                    android:scaleType="centerCrop"
+                    android:elevation="5dp" tools:targetApi="21"
+                    app:srcCompat="@drawable/default_avatar"
+                    tools:src="@drawable/default_avatar"/>
+
+                <RelativeLayout
+                    android:id="@+id/profile_content_drunk_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/profile_content_profile"
+                    android:layout_marginBottom="@dimen/space_screen_vertical"
+                    android:paddingRight="@dimen/space_screen_horizontal"
+                    android:paddingLeft="@dimen/space_screen_horizontal"
+                    android:background="@drawable/content_block_background">
+
+                    <TextView
+                        android:id="@+id/profile_content_drunk_status_title"
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_between_content"
+                        android:layout_marginBottom="@dimen/space_between_content"
+                        android:text="@string/alcohol_in_blood"
+                        tools:text="@string/alcohol_in_blood"/>
+
+                    <RelativeLayout
+                        android:id="@+id/profile_drunk_status_container"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_below="@id/profile_content_drunk_status_title"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/space_between_content"
+                        android:layout_marginBottom="@dimen/space_between_content">
+                        <com.gelitenight.waveview.library.WaveView
+                            android:id="@+id/profile_wave_drunk_status"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                        <TextView
+                            android:id="@+id/profile_tv_alcohol_in_blood"
+                            style="@style/TextAppearance.AppCompat.Headline"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:textColor="@android:color/white"
+                            tools:text="0.23"
+                            tools:textColor="@android:color/black"/>
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/profile_tv_drunk_status"
+                        style="@style/TextAppearance.AppCompat.Body2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/profile_drunk_status_container"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center"
+                        android:layout_marginBottom="@dimen/space_between_content"
+                        tools:text="You are very drunk man go home"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/profile_content_statistics"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/profile_content_drunk_status"
+                    android:layout_marginLeft="@dimen/space_screen_horizontal"
+                    android:layout_marginRight="@dimen/space_screen_horizontal"
+                    android:layout_marginBottom="@dimen/space_screen_vertical"
+                    android:background="@drawable/content_block_background"
+                    android:padding="@dimen/space_between_content"
+                    android:elevation="2dp" tools:targetApi="21">
+                    <TextView
+                        android:id="@+id/profile_content_statistics_title"
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/space_between_content"
+                        android:text="@string/drunk_beverages"
+                        tools:text="@string/drunk_beverages"/>
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/profile_piechart_drinks"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/profile_content_statistics_title"
+                        android:layout_centerHorizontal="true"/>
+                </RelativeLayout>
+            </RelativeLayout>
+        </ScrollView>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/fab_margin"
+            app:srcCompat="@drawable/ic_add_white_24dp"
+            />
+    </RelativeLayout>
+</layout>

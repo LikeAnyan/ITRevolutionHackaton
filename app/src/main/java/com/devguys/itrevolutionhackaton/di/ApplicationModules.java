@@ -1,6 +1,7 @@
 package com.devguys.itrevolutionhackaton.di;
 
 import com.devguys.itrevolutionhackaton.view.login.LoginFragment;
+import com.devguys.itrevolutionhackaton.view.profile.ProfileFragment;
 
 import dagger.Component;
 
@@ -11,4 +12,5 @@ import dagger.Component;
 @Component(modules = {DataModule.class})
 public interface ApplicationModules {
     void inject(LoginFragment loginFragment);
+    void inject(ProfileFragment profileFragment);
 }

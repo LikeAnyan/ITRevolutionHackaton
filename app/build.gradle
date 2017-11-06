@@ -51,6 +51,7 @@ dependencies {
 
     //3rd parties
     compile 'com.gelitenight.waveview:waveview:1.0.0' // https://github.com/gelitenight/WaveView
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.2' // https://github.com/PhilJay/MPAndroidChart
 
     //DI
     compile 'com.google.dagger:dagger:2.11'
