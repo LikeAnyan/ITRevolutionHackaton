@@ -11,5 +11,15 @@
     <string name="sign_up">Sign Up</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
-
+    <string name="profile_photo">Profile photo</string>
+    <string name="username">Username</string>
+    <string name="birthday">Birthday</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="weightInKg">Weight (kg)</string>
+    <string name="save">Save</string>
+    <string name="error_empty_field">Cannot be empty</string>
+    <string name="error_error">Error</string>
+    <string name="error_date_format">Enter date in format DD/mm/yyyy</string>
+    <string name="error_zero_or_less">Cannot be zero or less</string>
 </resources>

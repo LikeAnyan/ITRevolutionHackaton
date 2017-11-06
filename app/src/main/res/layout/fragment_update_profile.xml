@@ -1,11 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable name="account" type="com.devguys.itrevolutionhackaton.models.Account" />
+        <variable name="presenter" type="com.devguys.itrevolutionhackaton.presenter.CreateProfilePresenter" />
+    </data>
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/space_screen_horizontal"
+        android:paddingRight="@dimen/space_screen_horizontal"
+        android:paddingTop="@dimen/space_screen_vertical"
+        android:paddingBottom="@dimen/space_screen_vertical">
+        <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/update_profile_photo_title"
+                style="@style/TextAppearance.AppCompat.Caption"
+                android:text="@string/profile_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"/>
+            <ImageButton
+                android:id="@+id/update_profile_iv_avatar"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_below="@id/update_profile_photo_title"
+                android:layout_marginTop="@dimen/space_between_content"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/avatar_circular_border"
+                android:scaleType="centerCrop"
+                android:elevation="5dp" tools:targetApi="21"
+                app:srcCompat="@drawable/default_avatar"
+                tools:src="@drawable/default_avatar"/>
 
+            <RadioGroup
+                android:id="@+id/update_profile_sex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/update_profile_iv_avatar"
+                android:layout_marginTop="@dimen/space_screen_vertical"
+                android:orientation="horizontal"
+                tools:checkedButton="@id/update_profile_sex_male">
+                <RadioButton
+                    android:id="@+id/update_profile_sex_male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/male"
+                    android:layout_weight="1"
+                    android:checked="@{account.male ? true : false}"/>
+                <RadioButton
+                    android:id="@+id/update_profile_sex_female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/female"
+                    android:layout_weight="1"
+                    android:checked="@{!account.male ? true : false}"/>
+            </RadioGroup>
 
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/update_profile_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/update_profile_sex"
+                android:layout_marginTop="@dimen/space_screen_vertical">
 
-    </RelativeLayout>
+                <EditText
+                    android:id="@+id/update_profile_et_username"
+                    android:hint="@string/username"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:inputType="textEmailAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{account.userName}"
+                    tools:text="Some username"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/update_profile_birthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/update_profile_username"
+                android:layout_marginTop="@dimen/space_screen_vertical">
+
+                <EditText
+                    android:id="@+id/update_profile_et_birthday"
+                    android:hint="@string/birthday"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="date"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    tools:text="31.05.1998"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/update_profile_weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/update_profile_birthday"
+                android:layout_marginTop="@dimen/space_screen_vertical">
+
+                <EditText
+                    android:id="@+id/update_profile_et_weight"
+                    android:hint="@string/weightInKg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="3"
+                    android:inputType="number"
+                    android:text="@{account.weight != 0 ? String.valueOf((int) account.weight) : null}"
+                    tools:text="56"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/update_profile_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/update_profile_weight"
+                android:layout_marginTop="@dimen/space_screen_vertical"
+                android:text="@string/save"/>
+        </RelativeLayout>
+    </ScrollView>
 </layout>

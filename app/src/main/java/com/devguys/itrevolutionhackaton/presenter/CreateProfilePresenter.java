@@ -35,6 +35,15 @@ public class CreateProfilePresenter extends MvpPresenter<CreateProfileView> {
                 .subscribe(accountInfo -> getViewState().updateProfileSucceeded(), this::onError);
     }
 
+    public void updateProfile(String userName, long birthday, boolean isMale, double weight){
+        Account account = getProfile();
+        account.setUserName(userName);
+        account.setBirthday(birthday);
+        account.setMale(isMale);
+        account.setWeight(weight);
+        updateProfile(account);
+    }
+
     private void onError(Throwable throwable) {
         Log.e(getClass().getName(), throwable.getMessage());
         getViewState().updateProfileFailed(throwable.getMessage());

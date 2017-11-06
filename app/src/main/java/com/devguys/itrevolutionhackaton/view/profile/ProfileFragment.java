@@ -10,6 +10,8 @@ import android.widget.TextView;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.devguys.itrevolutionhackaton.ITRevolutionApp;
+import com.devguys.itrevolutionhackaton.LoginActivity;
+import com.devguys.itrevolutionhackaton.MainActivity;
 import com.devguys.itrevolutionhackaton.R;
 import com.devguys.itrevolutionhackaton.base.BaseFragment;
 import com.devguys.itrevolutionhackaton.databinding.FragmentProfileBinding;
@@ -55,6 +57,7 @@ public class ProfileFragment extends BaseFragment<FragmentProfileBinding> implem
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         binding.setAccount(ITRevolutionApp.get().getAccount());
+        binding.profileIvEdit.setOnClickListener(view1 -> LoginActivity.openAccountEdit(getActivity()));
         initAlcoholInBloodContent(view);
         initStatistics(view);
     }
