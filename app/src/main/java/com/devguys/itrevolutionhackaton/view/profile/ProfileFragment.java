@@ -12,6 +12,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.devguys.itrevolutionhackaton.ITRevolutionApp;
 import com.devguys.itrevolutionhackaton.LoginActivity;
+import com.devguys.itrevolutionhackaton.MainActivity;
 import com.devguys.itrevolutionhackaton.R;
 import com.devguys.itrevolutionhackaton.base.BaseFragment;
 import com.devguys.itrevolutionhackaton.databinding.FragmentProfileBinding;
@@ -63,6 +64,7 @@ public class ProfileFragment extends BaseFragment<FragmentProfileBinding> implem
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         binding.setAccount(presenter.getProfile());
         binding.profileIvEdit.setOnClickListener(view1 -> LoginActivity.openAccountEdit(getActivity()));
+        binding.fab.setOnClickListener(view1 -> MainActivity.openAddDrink(getActivity()));
         initAlcoholInBloodContent(view);
         initStatistics(view);
 
