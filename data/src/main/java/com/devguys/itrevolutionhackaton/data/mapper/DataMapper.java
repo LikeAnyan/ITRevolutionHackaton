@@ -8,4 +8,8 @@ public class DataMapper {
     public static Account transform(AccountModel accountModel) {
         return null;
     }
+
+    public static AccountModel transform(Account account) {
+        return null;
+    }
 }

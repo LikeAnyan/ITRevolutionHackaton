@@ -13,6 +13,8 @@ public interface DataRepository {
 
     Observable<Account> signUp(String username, String password);
 
+    Observable<Account> updateAccountInfo(Account account);
+
     Observable<Void> logout();
 
     Observable<Void> saveDrink(Drink drink);

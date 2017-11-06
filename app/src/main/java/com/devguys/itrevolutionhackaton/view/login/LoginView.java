@@ -4,7 +4,9 @@ import com.devguys.itrevolutionhackaton.base.CoreView;
 
 public interface LoginView extends CoreView {
 
-    void loginSucceeded();
+    void signInSucceeded();
+
+    void signUpSucceeded();
 
     void loginFailed(String message);
 }

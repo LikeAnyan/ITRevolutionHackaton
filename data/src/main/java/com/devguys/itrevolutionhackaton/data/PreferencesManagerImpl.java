@@ -4,8 +4,11 @@ import android.content.SharedPreferences;
 
 import com.devguys.itrevolutionhackaton.PreferencesManager;
 import com.devguys.itrevolutionhackaton.models.Account;
+import com.google.gson.Gson;
 
 public class PreferencesManagerImpl implements PreferencesManager {
+
+    private static final String ACCOUNT_INFO = "account_info";
 
     private SharedPreferences preferences;
 
@@ -20,11 +23,13 @@ public class PreferencesManagerImpl implements PreferencesManager {
 
     @Override
     public void saveUserAccount(Account account) {
-
+        String json = new Gson().toJson(account);
+        preferences.edit().putString(ACCOUNT_INFO, json).apply();
     }
 
     @Override
     public Account loadUserAccount() {
-        return null;
+        String json = preferences.getString(ACCOUNT_INFO, null);
+        return json == null ? null : new Gson().fromJson(json, Account.class);
     }
 }

@@ -10,5 +10,7 @@ public interface UserStore {
 
     Observable<AccountModel> signUp(String username, String password);
 
+    Observable<AccountModel> updateAccountInfo(AccountModel accountModel);
+
     Observable<Void> logout();
 }

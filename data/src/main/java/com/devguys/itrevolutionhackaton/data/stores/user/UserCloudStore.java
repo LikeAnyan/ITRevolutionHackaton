@@ -19,8 +19,8 @@ public class UserCloudStore implements UserStore {
     @Override
     public Observable<AccountModel> signIn(String username, String password) {
         return Observable.create(subscriber -> mAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(task -> {
-            if(task.isSuccessful()) {
-                subscriber.onNext(getAccountFromCloud());
+            if(task.isSuccessful() && mAuth.getCurrentUser() != null) {
+                subscriber.onNext(getAccountFromCloud(mAuth.getCurrentUser().getUid()));
                 subscriber.onCompleted();
             } else {
                 subscriber.onError(task.getException());
@@ -31,8 +31,8 @@ public class UserCloudStore implements UserStore {
     @Override
     public Observable<AccountModel> signUp(String username, String password) {
         return Observable.create(subscriber -> mAuth.createUserWithEmailAndPassword(username, password).addOnCompleteListener(task -> {
-            if(task.isSuccessful()) {
-                subscriber.onNext(getAccountFromCloud());
+            if(task.isSuccessful() && mAuth.getCurrentUser() != null) {
+                subscriber.onNext(new AccountModel());
                 subscriber.onCompleted();
             } else {
                 subscriber.onError(task.getException());
@@ -41,12 +41,17 @@ public class UserCloudStore implements UserStore {
     }
 
     @Override
+    public Observable<AccountModel> updateAccountInfo(AccountModel accountModel) {
+        return null;
+    }
+
+    @Override
     public Observable<Void> logout() {
         mAuth.signOut();
         return Observable.just(null);
     }
 
-    private AccountModel getAccountFromCloud() {
+    private AccountModel getAccountFromCloud(String uuid) {
         return null;
     }
 }

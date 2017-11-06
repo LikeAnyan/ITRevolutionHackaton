@@ -6,7 +6,6 @@ import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.devguys.itrevolutionhackaton.DataRepository;
 import com.devguys.itrevolutionhackaton.PreferencesManager;
-import com.devguys.itrevolutionhackaton.models.Account;
 import com.devguys.itrevolutionhackaton.util.RxTransformers;
 import com.devguys.itrevolutionhackaton.view.login.LoginView;
 
@@ -26,19 +25,16 @@ public class LoginPresenter extends MvpPresenter<LoginView> {
 
     public void signIn(String username, String password){
         mDataRepository.signIn(username, password)
+                .doOnNext(account -> preferencesManager.saveUserAccount(account))
                 .compose(RxTransformers.applyApiRequestSchedulers())
-                .subscribe(this::onSuccess, this::onError);
+                .subscribe(account -> getViewState().signInSucceeded(), this::onError);
     }
 
     public void signUp(String username, String password){
         mDataRepository.signUp(username, password)
+                .doOnNext(account -> preferencesManager.saveUserAccount(account))
                 .compose(RxTransformers.applyApiRequestSchedulers())
-                .subscribe(this::onSuccess, this::onError);
-    }
-
-    private void onSuccess(Account account) {
-        preferencesManager.saveUserAccount(account);
-        getViewState().loginSucceeded();
+                .subscribe(account -> getViewState().signUpSucceeded(), this::onError);
     }
 
     private void onError(Throwable throwable) {

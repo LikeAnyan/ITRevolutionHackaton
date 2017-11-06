@@ -36,6 +36,12 @@ public class DataRepositoryImpl implements DataRepository {
     }
 
     @Override
+    public Observable<Account> updateAccountInfo(Account account) {
+        final UserStore store = new UserFactory(mAuth, database).create();
+        return store.updateAccountInfo(DataMapper.transform(account)).map(DataMapper::transform);
+    }
+
+    @Override
     public Observable<Void> logout() {
         final UserStore store = new UserFactory(mAuth, database).create();
         return store.logout();
