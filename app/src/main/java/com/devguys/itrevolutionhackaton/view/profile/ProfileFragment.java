@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -12,9 +11,11 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.devguys.itrevolutionhackaton.ITRevolutionApp;
 import com.devguys.itrevolutionhackaton.LoginActivity;
+import com.devguys.itrevolutionhackaton.MainActivity;
 import com.devguys.itrevolutionhackaton.R;
 import com.devguys.itrevolutionhackaton.base.BaseFragment;
 import com.devguys.itrevolutionhackaton.databinding.FragmentProfileBinding;
+import com.devguys.itrevolutionhackaton.models.Drink;
 import com.devguys.itrevolutionhackaton.presenter.ProfilePresenter;
 import com.devguys.itrevolutionhackaton.util.ShareUtils;
 import com.devguys.itrevolutionhackaton.util.helpers.DrunkHelper;
@@ -38,13 +39,10 @@ import javax.inject.Inject;
  */
 
 public class ProfileFragment extends BaseFragment<FragmentProfileBinding> implements ProfileView {
-    public static final String TAG = ProfileFragment.class.getName();
 
     @Inject
     @InjectPresenter
     ProfilePresenter presenter;
-
-    private PieChart pieChart;
 
     @ProvidePresenter
     ProfilePresenter provideProfilePresenter(){ return presenter;}
@@ -63,40 +61,26 @@ public class ProfileFragment extends BaseFragment<FragmentProfileBinding> implem
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         binding.setAccount(presenter.getProfile());
         binding.profileIvEdit.setOnClickListener(view1 -> LoginActivity.openAccountEdit(getActivity()));
-        initAlcoholInBloodContent(view);
-        initStatistics(view);
 
         binding.share.setOnClickListener(view1 -> {
             ShareDialog dialog = new ShareDialog(getActivity());
             Bitmap image = ShareUtils.loadBitmapFromView(view.findViewById(R.id.profile_piechart_drinks));
             dialog.show(ShareUtils.shareToFB(image), ShareDialog.Mode.AUTOMATIC);
         });
+
+        binding.fab.setOnClickListener(view1 -> MainActivity.openAddDrink(getActivity()));
+
+        presenter.getAllDrinks();
+        presenter.getAllDrinks(System.currentTimeMillis());
     }
 
-    private void initAlcoholInBloodContent(View root){
-        if(root == null){
-            Log.e(TAG, "initAlcoholInBloodContent failed, root == null");
+    @Override
+    public void updateStatistic(List<Drink> drinks) {
+        if (getView() == null)
             return;
-        }
 
-        double alcoholInBlood = DrunkHelper.getAlcoholInBlood(ITRevolutionApp.get().getAccount(), ITRevolutionApp.get().getDrinkList());
-        TextView tvAlcoholInBlood = root.findViewById(R.id.profile_tv_alcohol_in_blood);
-        tvAlcoholInBlood.setText(String.format(Locale.getDefault(), "%.2f", alcoholInBlood));
-
-        WaveView waveView = root.findViewById(R.id.profile_wave_drunk_status);
-        waveView.setShapeType(WaveView.ShapeType.CIRCLE);
-        waveView.setWaveColor(getResources().getColor(R.color.colorAccent), getResources().getColor(R.color.colorPrimaryDark));
-        WaveHelper mWaveHelper = new WaveHelper(waveView);
-        mWaveHelper.setAlcohol(alcoholInBlood);
-    }
-
-    private void initStatistics(View root){
-        if(root == null){
-            return;
-        }
-
-        List<PieEntry> pieEntries = DrunkHelper.getBeverageDrink(ITRevolutionApp.get().getDrinkList());
-        pieChart = root.findViewById(R.id.profile_piechart_drinks);
+        List<PieEntry> pieEntries = DrunkHelper.getBeverageDrink(drinks);
+        PieChart pieChart = getView().findViewById(R.id.profile_piechart_drinks);
 
         pieChart.setUsePercentValues(false);
         pieChart.setDrawHoleEnabled(true);
@@ -130,5 +114,21 @@ public class ProfileFragment extends BaseFragment<FragmentProfileBinding> implem
         PieData pieData = new PieData(dataSet);
         pieChart.setData(pieData);
         pieChart.invalidate();
+    }
+
+    @Override
+    public void updateBloodLevel(List<Drink> drinks) {
+        if (getView() == null)
+            return;
+
+        double alcoholInBlood = DrunkHelper.getAlcoholInBlood(presenter.getProfile(), drinks);
+        TextView tvAlcoholInBlood = getView().findViewById(R.id.profile_tv_alcohol_in_blood);
+        tvAlcoholInBlood.setText(String.format(Locale.getDefault(), "%.2f", alcoholInBlood));
+
+        WaveView waveView = getView().findViewById(R.id.profile_wave_drunk_status);
+        waveView.setShapeType(WaveView.ShapeType.CIRCLE);
+        waveView.setWaveColor(getResources().getColor(R.color.colorAccent), getResources().getColor(R.color.colorPrimaryDark));
+        WaveHelper mWaveHelper = new WaveHelper(waveView);
+        mWaveHelper.setAlcohol(alcoholInBlood);
     }
 }

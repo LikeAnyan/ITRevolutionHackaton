@@ -13,6 +13,7 @@ import com.devguys.itrevolutionhackaton.R;
 import com.devguys.itrevolutionhackaton.base.BaseFragment;
 import com.devguys.itrevolutionhackaton.databinding.FragmentAddDrinkBinding;
 import com.devguys.itrevolutionhackaton.presenter.AddDrinkPresenter;
+import com.devguys.itrevolutionhackaton.util.UiUtills;
 import com.devguys.itrevolutionhackaton.util.drink.DrinkDataset;
 
 import javax.inject.Inject;
@@ -72,7 +73,13 @@ public class AddDrinkFragment extends BaseFragment<FragmentAddDrinkBinding> impl
 
     @Override
     public void onDrinkSaved() {
+        UiUtills.showToast("Drink is added succeeded!");
         getActivity().finish();
+    }
+
+    @Override
+    public void saveDrinkFailed(String message) {
+        UiUtills.showToast(message);
     }
 
     private boolean checkFields(){

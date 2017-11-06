@@ -1,11 +1,14 @@
 package com.devguys.itrevolutionhackaton.presenter;
 
+import android.util.Log;
+
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.devguys.itrevolutionhackaton.DataRepository;
 import com.devguys.itrevolutionhackaton.PreferencesManager;
 import com.devguys.itrevolutionhackaton.models.Account;
 import com.devguys.itrevolutionhackaton.models.Drink;
+import com.devguys.itrevolutionhackaton.util.RxTransformers;
 import com.devguys.itrevolutionhackaton.util.drink.DrinkFactory;
 import com.devguys.itrevolutionhackaton.util.helpers.DrunkHelper;
 import com.devguys.itrevolutionhackaton.view.drink.AddDrinkView;
@@ -36,6 +39,13 @@ public class AddDrinkPresenter extends MvpPresenter<AddDrinkView>{
     }
 
     private void saveDrink(Drink drink){
-        repository.saveDrink(drink);
+        repository.saveDrink(drink)
+                .compose(RxTransformers.applyApiRequestSchedulers())
+                .subscribe(aVoid -> getViewState().onDrinkSaved(), this::onError);
+    }
+
+    private void onError(Throwable throwable) {
+        Log.e(getClass().getName(), throwable.getMessage());
+        getViewState().saveDrinkFailed(throwable.getMessage());
     }
 }

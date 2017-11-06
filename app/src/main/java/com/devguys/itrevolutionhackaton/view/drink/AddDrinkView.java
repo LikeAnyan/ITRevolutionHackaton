@@ -7,5 +7,8 @@ import com.devguys.itrevolutionhackaton.base.CoreView;
  */
 
 public interface AddDrinkView extends CoreView{
+
     void onDrinkSaved();
+
+    void saveDrinkFailed(String message);
 }
