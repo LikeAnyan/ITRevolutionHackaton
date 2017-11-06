@@ -1,12 +1,8 @@
 package com.devguys.itrevolutionhackaton.models;
 
-/**
- * Created by vanoz on 11/4/17.
- */
-
 @SuppressWarnings("unused")
 public class Account {
-    /* Всі ці поля потрібно зберігати в бд, якщо буде достатньо часу, то можна буде реалізувати зміну reductionCoefficient в залежності від певних факторів */
+
     private long id;
     private String userName; // sets by user
     private long birthday; // sets by user, need to determinate y.o., has influence on reductionCoefficient

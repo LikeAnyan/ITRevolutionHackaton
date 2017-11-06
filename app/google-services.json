@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "907523814361",
-    "firebase_url": "https://itrevolution-615e1.firebaseio.com",
-    "project_id": "itrevolution-615e1",
-    "storage_bucket": "itrevolution-615e1.appspot.com"
+    "project_number": "879614198879",
+    "firebase_url": "https://itrevolutionhackaton.firebaseio.com",
+    "project_id": "itrevolutionhackaton",
+    "storage_bucket": "itrevolutionhackaton.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:907523814361:android:98c29807981c3921",
+        "mobilesdk_app_id": "1:879614198879:android:98c29807981c3921",
         "android_client_info": {
           "package_name": "com.devguys.itrevolutionhackaton"
         }
       },
       "oauth_client": [
         {
-          "client_id": "907523814361-i3notjrb9qeenp73mcoc37un38acc5n1.apps.googleusercontent.com",
+          "client_id": "879614198879-lot67mmprjocusjcq9d53lrgnoeu5r4l.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCCWbX1tDIQNjF-lexPZIBP-EPFGt0AH9M"
+          "current_key": "AIzaSyAzKQSPfHmOnUHug_f6BZT8YQuNKV61me8"
         }
       ],
       "services": {

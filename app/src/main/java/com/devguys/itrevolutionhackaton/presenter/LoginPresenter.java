@@ -5,35 +5,44 @@ import android.util.Log;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.devguys.itrevolutionhackaton.DataRepository;
-import com.devguys.itrevolutionhackaton.models.Drink;
-import com.devguys.itrevolutionhackaton.util.AlgorithmUtills;
-import com.devguys.itrevolutionhackaton.util.drink.DrinkDataset;
-import com.devguys.itrevolutionhackaton.util.drink.DrinkFactory;
+import com.devguys.itrevolutionhackaton.PreferencesManager;
+import com.devguys.itrevolutionhackaton.models.Account;
+import com.devguys.itrevolutionhackaton.util.RxTransformers;
 import com.devguys.itrevolutionhackaton.view.login.LoginView;
 
 import javax.inject.Inject;
 
-/**
- * Created by sergeyboy on 04.11.17.
- */
-
 @InjectViewState
 public class LoginPresenter extends MvpPresenter<LoginView> {
-    public DataRepository mDataRepository;
+
+    private DataRepository mDataRepository;
+    private PreferencesManager preferencesManager;
 
     @Inject
-    public LoginPresenter(DataRepository repository) {
-        getViewState().onButtonPressed("test");
+    LoginPresenter(DataRepository repository, PreferencesManager preferencesManager) {
         this.mDataRepository = repository;
+        this.preferencesManager = preferencesManager;
     }
 
-    public void onBtnPressed(){
-        long timestamp = System.currentTimeMillis();
-        Drink drink = DrinkFactory.createDrink(90, 0.7, 500, 0.4, DrinkDataset.TYPE_VODKA, timestamp);
-        //    Log.e(getClass().getName(), String.valueOf(AlgorithmUtills.widmarkAlgorithmCurrentTime(67, 0.7, (System.currentTimeMillis()), new Drink(1500, 0.4)))); // DEATH COMING
-        //getViewState().onButtonPressed("onBtnPressed");
-        /*mDataRepository.login("asd", "asd").subscribeOn(Schedulers.io()).unsubscribeOn(AndroidSchedulers.mainThread()).subscribe(account -> {
+    public void signIn(String username, String password){
+        mDataRepository.signIn(username, password)
+                .compose(RxTransformers.applyApiRequestSchedulers())
+                .subscribe(this::onSuccess, this::onError);
+    }
 
-        });*/
+    public void signUp(String username, String password){
+        mDataRepository.signUp(username, password)
+                .compose(RxTransformers.applyApiRequestSchedulers())
+                .subscribe(this::onSuccess, this::onError);
+    }
+
+    private void onSuccess(Account account) {
+        preferencesManager.saveUserAccount(account);
+        getViewState().loginSucceeded();
+    }
+
+    private void onError(Throwable throwable) {
+        Log.e(getClass().getName(), throwable.getMessage());
+        getViewState().loginFailed(throwable.getMessage());
     }
 }

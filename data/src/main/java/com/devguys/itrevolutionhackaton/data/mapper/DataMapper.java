@@ -1,18 +1,11 @@
 package com.devguys.itrevolutionhackaton.data.mapper;
 
-import com.devguys.itrevolutionhackaton.data.models.SessionModel;
-import com.devguys.itrevolutionhackaton.models.Session;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.devguys.itrevolutionhackaton.data.models.AccountModel;
+import com.devguys.itrevolutionhackaton.models.Account;
 
 public class DataMapper {
 
-    public static SessionModel transform(Session session) {
-        return new SessionModel();
-    }
-
-    public static List<Session> transform(List<SessionModel> models) {
-        return new ArrayList<>();
+    public static Account transform(AccountModel accountModel) {
+        return null;
     }
 }

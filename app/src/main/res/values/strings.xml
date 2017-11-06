@@ -2,10 +2,14 @@
     <string name="app_name">ITRevolutionHackaton</string>
     <string name="title_activity_main">MainActivity</string>
 
-
     <string name="alcohol_in_blood">Alcohol in blood</string>
     <string name="drunk_beverages">Drunk beverages</string>
     <string name="hours_left">%1$s hours left</string>
     <string name="less_than_hour_left">Less than hour left</string>
     <string name="you_are_sober">You are sober</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+
 </resources>
