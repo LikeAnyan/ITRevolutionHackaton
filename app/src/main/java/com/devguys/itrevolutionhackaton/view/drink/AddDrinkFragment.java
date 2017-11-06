@@ -1,5 +1,6 @@
 package com.devguys.itrevolutionhackaton.view.drink;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ArrayAdapter;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.devguys.itrevolutionhackaton.ITRevolutionApp;
+import com.devguys.itrevolutionhackaton.MainActivity;
 import com.devguys.itrevolutionhackaton.R;
 import com.devguys.itrevolutionhackaton.base.BaseFragment;
 import com.devguys.itrevolutionhackaton.databinding.FragmentAddDrinkBinding;
@@ -72,7 +74,9 @@ public class AddDrinkFragment extends BaseFragment<FragmentAddDrinkBinding> impl
 
     @Override
     public void onDrinkSaved() {
-        getActivity().finish();
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 
     private boolean checkFields(){
@@ -94,6 +98,7 @@ public class AddDrinkFragment extends BaseFragment<FragmentAddDrinkBinding> impl
             success = false;
             binding.drinkAddEtDrunk.setError(getResources().getString(R.string.error_empty_field));
         } else if(Double.parseDouble(binding.drinkAddEtDrunk.getText().toString()) <= 0){
+            success = false;
             binding.drinkAddEtDrunk.setError(getString(R.string.error_zero_or_less));
         }
         return success;

@@ -1,5 +1,7 @@
 package com.devguys.itrevolutionhackaton.presenter;
 
+import android.util.Log;
+
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.devguys.itrevolutionhackaton.DataRepository;
@@ -33,6 +35,7 @@ public class AddDrinkPresenter extends MvpPresenter<AddDrinkView>{
         Account account = preferencesManager.loadUserAccount();
         Drink drink = DrinkFactory.createDrink(account.getWeight(), account.getReductionCoefficient(), drunk, alc, type);
         saveDrink(drink);
+        getViewState().onDrinkSaved();
     }
 
     private void saveDrink(Drink drink){

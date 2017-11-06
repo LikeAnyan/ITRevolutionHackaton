@@ -75,6 +75,16 @@ public class ProfileFragment extends BaseFragment<FragmentProfileBinding> implem
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(getView() == null){
+            return;
+        }
+        initAlcoholInBloodContent(getView());
+        initStatistics(getView());
+    }
+
     private void initAlcoholInBloodContent(View root){
         if(root == null){
             Log.e(TAG, "initAlcoholInBloodContent failed, root == null");
