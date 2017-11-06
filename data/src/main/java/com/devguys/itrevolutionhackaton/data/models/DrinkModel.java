@@ -8,7 +8,6 @@ public class DrinkModel {
     private long endTime;
     private int type;
 
-
     public double getMilliliters() {
         return milliliters;
     }

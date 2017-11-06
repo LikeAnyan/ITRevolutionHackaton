@@ -36,7 +36,8 @@ public class UserCloudStore implements UserStore {
     public Observable<AccountModel> signUp(String username, String password) {
         return Observable.create(subscriber -> mAuth.createUserWithEmailAndPassword(username, password).addOnCompleteListener(task -> {
             if(task.isSuccessful() && mAuth.getCurrentUser() != null) {
-                database.child("users").setValue(mAuth.getCurrentUser().getUid());
+                database.child("users").push().setValue(mAuth.getCurrentUser().getUid());
+                database.child("drinks").push().setValue(mAuth.getCurrentUser().getUid());
 
                 subscriber.onNext(new AccountModel());
                 subscriber.onCompleted();
