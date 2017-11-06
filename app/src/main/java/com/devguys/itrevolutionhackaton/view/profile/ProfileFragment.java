@@ -62,14 +62,18 @@ public class ProfileFragment extends BaseFragment<FragmentProfileBinding> implem
         binding.setAccount(presenter.getProfile());
         binding.profileIvEdit.setOnClickListener(view1 -> LoginActivity.openAccountEdit(getActivity()));
 
+        binding.fab.setOnClickListener(view1 -> MainActivity.openAddDrink(getActivity()));
+
         binding.share.setOnClickListener(view1 -> {
             ShareDialog dialog = new ShareDialog(getActivity());
             Bitmap image = ShareUtils.loadBitmapFromView(view.findViewById(R.id.profile_piechart_drinks));
             dialog.show(ShareUtils.shareToFB(image), ShareDialog.Mode.AUTOMATIC);
         });
+    }
 
-        binding.fab.setOnClickListener(view1 -> MainActivity.openAddDrink(getActivity()));
-
+    @Override
+    public void onResume() {
+        super.onResume();
         presenter.getAllDrinks();
         presenter.getAllDrinks(System.currentTimeMillis());
     }

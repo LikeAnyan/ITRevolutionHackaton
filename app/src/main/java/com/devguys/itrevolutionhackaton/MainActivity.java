@@ -14,7 +14,7 @@ public class MainActivity extends BaseActivity {
     static final String EXTRA_ADD_DRINK = "extra_add_drink";
 
     public static void openAddDrink(Activity activity){
-        Intent intent = new Intent(activity, LoginActivity.class);
+        Intent intent = new Intent(activity, MainActivity.class);
         intent.putExtra(EXTRA_ADD_DRINK, true);
         activity.startActivity(intent);
     }

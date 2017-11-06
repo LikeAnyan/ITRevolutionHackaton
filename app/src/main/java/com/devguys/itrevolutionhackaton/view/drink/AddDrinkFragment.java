@@ -84,15 +84,23 @@ public class AddDrinkFragment extends BaseFragment<FragmentAddDrinkBinding> impl
 
     private boolean checkFields(){
         boolean success = true;
-        double value = Double.parseDouble(binding.drinkAddEtAlcohol.getText().toString()) / 100;
-        if(value > currentDataset.getAlcoholTurnoversMax()){
-            binding.drinkAddEtAlcohol.setError(getString(R.string.error_wrong_alcohol_type_selected_too_much));
+        if(binding.drinkAddEtAlcohol.getText().toString().isEmpty()){
             success = false;
-        } else if(value < currentDataset.getAlcoholTurnoversMin()){
-            binding.drinkAddEtAlcohol.setError(getString(R.string.error_wrong_alcohol_type_selected_too_less));
-            success = false;
+            binding.drinkAddEtAlcohol.setError(getResources().getString(R.string.error_empty_field));
+        } else{
+            double value = Double.parseDouble(binding.drinkAddEtAlcohol.getText().toString()) / 100;
+            if(value > currentDataset.getAlcoholTurnoversMax()){
+                binding.drinkAddEtAlcohol.setError(getString(R.string.error_wrong_alcohol_type_selected_too_much));
+                success = false;
+            } else if(value < currentDataset.getAlcoholTurnoversMin()){
+                binding.drinkAddEtAlcohol.setError(getString(R.string.error_wrong_alcohol_type_selected_too_less));
+                success = false;
+            }
         }
-        if(Double.parseDouble(binding.drinkAddEtDrunk.getText().toString()) <= 0){
+        if(binding.drinkAddEtDrunk.getText().toString().isEmpty()){
+            success = false;
+            binding.drinkAddEtDrunk.setError(getResources().getString(R.string.error_empty_field));
+        } else if(Double.parseDouble(binding.drinkAddEtDrunk.getText().toString()) <= 0){
             binding.drinkAddEtDrunk.setError(getString(R.string.error_zero_or_less));
         }
         return success;
