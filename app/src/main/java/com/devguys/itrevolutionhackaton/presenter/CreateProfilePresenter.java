@@ -8,6 +8,7 @@ import com.devguys.itrevolutionhackaton.DataRepository;
 import com.devguys.itrevolutionhackaton.PreferencesManager;
 import com.devguys.itrevolutionhackaton.models.Account;
 import com.devguys.itrevolutionhackaton.util.RxTransformers;
+import com.devguys.itrevolutionhackaton.util.helpers.DrunkHelper;
 import com.devguys.itrevolutionhackaton.view.update.CreateProfileView;
 
 import javax.inject.Inject;
@@ -41,6 +42,7 @@ public class CreateProfilePresenter extends MvpPresenter<CreateProfileView> {
         account.setBirthday(birthday);
         account.setMale(isMale);
         account.setWeight(weight);
+        account.setReductionCoefficient(DrunkHelper.getReductionCoefficient(isMale, birthday));
         updateProfile(account);
     }
 
