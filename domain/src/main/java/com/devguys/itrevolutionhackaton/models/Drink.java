@@ -2,11 +2,15 @@ package com.devguys.itrevolutionhackaton.models;
 
 @SuppressWarnings("unused")
 public class Drink {
-    private final double milliliters;
-    private final double alcoholTurnovers;
-    private final long startTime; // timestamp in mills when user drunk
+    private double milliliters;
+    private double alcoholTurnovers;
+    private long startTime; // timestamp in mills when user drunk
     private long endTime; // timestamp in mills when alcohol effect will be removed
-    private final int type; // for UI
+    private int type; // for UI
+
+    public Drink() {
+
+    }
 
     public Drink(double milliliters, double alcoholTurnovers, long startTime, long endTime, int type) {
         this.milliliters = milliliters;
@@ -31,6 +35,26 @@ public class Drink {
         this.type = 0;
     }
 
+    public void setEndTime(long endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setMilliliters(double milliliters) {
+        this.milliliters = milliliters;
+    }
+
+    public void setAlcoholTurnovers(double alcoholTurnovers) {
+        this.alcoholTurnovers = alcoholTurnovers;
+    }
+
+    public void setStartTime(long startTime) {
+        this.startTime = startTime;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
     public double getMilliliters() {
         return milliliters;
     }
@@ -49,9 +73,5 @@ public class Drink {
 
     public int getType() {
         return type;
-    }
-
-    public void setEndTime(long endTime) {
-        this.endTime = endTime;
     }
 }
