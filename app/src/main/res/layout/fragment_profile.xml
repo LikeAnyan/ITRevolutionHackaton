@@ -145,6 +145,15 @@
                         android:text="@string/drunk_beverages"
                         tools:text="@string/drunk_beverages"/>
 
+                    <ImageButton
+                        android:id="@+id/share"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:background="@android:color/transparent"
+                        android:padding="5dp"
+                        app:srcCompat="@drawable/ic_share_black_24dp"/>
+
                     <com.github.mikephil.charting.charts.PieChart
                         android:id="@+id/profile_piechart_drinks"
                         android:layout_width="match_parent"

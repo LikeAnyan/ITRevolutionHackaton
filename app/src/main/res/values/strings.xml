@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">ITRevolutionHackaton</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="facebook_app_id">372636583178030</string>
 
     <string name="alcohol_in_blood">Alcohol in blood</string>
     <string name="drunk_beverages">Drunk beverages</string>
