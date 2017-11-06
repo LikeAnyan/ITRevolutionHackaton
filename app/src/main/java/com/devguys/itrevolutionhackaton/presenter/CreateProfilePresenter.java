@@ -36,13 +36,14 @@ public class CreateProfilePresenter extends MvpPresenter<CreateProfileView> {
                 .subscribe(accountInfo -> getViewState().updateProfileSucceeded(), this::onError);
     }
 
-    public void updateProfile(String userName, long birthday, boolean isMale, double weight){
+    public void updateProfile(String userName, long birthday, boolean isMale, double weight, boolean useFinger){
         Account account = getProfile();
         account.setUserName(userName);
         account.setBirthday(birthday);
         account.setMale(isMale);
         account.setWeight(weight);
         account.setReductionCoefficient(DrunkHelper.getReductionCoefficient(isMale, birthday));
+        account.setUseDevicesFingerprint(useFinger);
         updateProfile(account);
     }
 

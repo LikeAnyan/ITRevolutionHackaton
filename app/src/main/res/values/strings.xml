@@ -44,6 +44,13 @@
     <string name="absinthe">Absinthe</string>
     <string name="other">Other</string>
 
+    <string name="fingerprint_auth">Fingerprint auth</string>
+    <string name="fingerprint_message">Place your fingertip on the Home button to verify your identity</string>
+    <string name="fignerprint_failed">Failed</string>
+    <string name="logout">Logout</string>
+    <string name="fingerprint_no_scans">No fingerprint configured. Please register at least one fingerprint in your device\'s Settings</string>
+    <string name="use_fingerprint">Use fingerprint</string>
+
     <string-array name="drink_types">
         <item>@string/kvas</item>
         <item>@string/beer_light</item>

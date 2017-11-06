@@ -74,7 +74,8 @@ public class CreateProfileFragment extends BaseFragment<FragmentUpdateProfileBin
                 presenter.updateProfile(binding.updateProfileEtUsername.getText().toString(),
                         date.getTime(),
                         binding.updateProfileSexMale.isChecked(),
-                        Double.parseDouble(binding.updateProfileEtWeight.getText().toString()));
+                        Double.parseDouble(binding.updateProfileEtWeight.getText().toString()),
+                        binding.updateProfileUseFingerprint.isChecked());
             }
         });
     }

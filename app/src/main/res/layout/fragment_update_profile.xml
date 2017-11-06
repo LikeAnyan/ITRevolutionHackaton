@@ -61,11 +61,20 @@
                     android:checked="@{!account.male ? true : false}"/>
             </RadioGroup>
 
+            <CheckBox
+                android:id="@+id/update_profile_use_fingerprint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/use_fingerprint"
+                android:layout_marginTop="@dimen/space_screen_vertical"
+                android:layout_below="@id/update_profile_sex"
+                android:checked="@{account.useDevicesFingerprint}"/>
+
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/update_profile_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/update_profile_sex"
+                android:layout_below="@id/update_profile_use_fingerprint"
                 android:layout_marginTop="@dimen/space_screen_vertical">
 
                 <EditText

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:paddingLeft="@dimen/space_screen_horizontal"
+        android:paddingRight="@dimen/space_screen_horizontal"
+        android:paddingTop="@dimen/space_screen_vertical"
+        android:paddingBottom="@dimen/space_screen_vertical">
+        <TextView
+            android:id="@+id/fingerprint_title"
+            style="@style/TextAppearance.AppCompat.Headline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
+            android:text="@string/fingerprint_auth"/>
+        <ImageView
+            android:id="@+id/fingerprint_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_fingerprint_black_100dp"
+            android:layout_below="@id/fingerprint_title"
+            android:layout_marginTop="@dimen/space_screen_vertical"
+            android:layout_centerHorizontal="true"/>
+        <Button
+            android:id="@+id/fingerprint_btn_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fingerprint_iv"
+            android:layout_marginTop="@dimen/space_screen_vertical"
+            android:text="@string/logout"/>
+    </RelativeLayout>
+</layout>
