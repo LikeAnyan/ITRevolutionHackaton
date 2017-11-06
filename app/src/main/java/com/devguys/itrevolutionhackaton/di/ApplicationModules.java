@@ -4,6 +4,7 @@ import com.devguys.itrevolutionhackaton.LoginActivity;
 import com.devguys.itrevolutionhackaton.di.modules.AppModule;
 import com.devguys.itrevolutionhackaton.di.modules.DataModule;
 import com.devguys.itrevolutionhackaton.di.modules.PreferencesModule;
+import com.devguys.itrevolutionhackaton.view.drink.AddDrinkFragment;
 import com.devguys.itrevolutionhackaton.view.login.LoginFragment;
 import com.devguys.itrevolutionhackaton.view.profile.ProfileFragment;
 import com.devguys.itrevolutionhackaton.view.update.CreateProfileFragment;
@@ -24,4 +25,6 @@ public interface ApplicationModules {
     void inject(ProfileFragment profileFragment);
 
     void inject(CreateProfileFragment createProfileFragment);
+
+    void inject(AddDrinkFragment addDrinkFragment);
 }

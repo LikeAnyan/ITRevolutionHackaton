@@ -22,4 +22,42 @@
     <string name="error_error">Error</string>
     <string name="error_date_format">Enter date in format DD/mm/yyyy</string>
     <string name="error_zero_or_less">Cannot be zero or less</string>
+    <string name="value_milligrams">Value (ml)</string>
+    <string name="alcohol_in_percent">Alcohol (%)</string>
+    <string name="error_wrong_alcohol_type_selected_too_much">Wrong alcohol type selected (too much alc %)</string>
+    <string name="error_wrong_alcohol_type_selected_too_less">Wrong alcohol type selected (too less alc %)</string>
+
+    <string name="kvas">Kvas</string>
+    <string name="beer_light">Beer light</string>
+    <string name="beer_dark">Beer dark</string>
+    <string name="vine">Vine</string>
+    <string name="tincture">Tincture</string>
+    <string name="liquor">Liquor</string>
+    <string name="vodka">Vodka</string>
+    <string name="tequila">Tequila</string>
+    <string name="brandy">Brandy</string>
+    <string name="whiskey_light">Whiskey light</string>
+    <string name="whiskey_medium">Whiskey medium</string>
+    <string name="whiskey_hard">Whiskey hard</string>
+    <string name="rum">Rum</string>
+    <string name="absinthe">Absinthe</string>
+    <string name="other">Other</string>
+
+    <string-array name="drink_types">
+        <item>@string/kvas</item>
+        <item>@string/beer_light</item>
+        <item>@string/beer_dark</item>
+        <item>@string/vine</item>
+        <item>@string/tincture</item>
+        <item>@string/liquor</item>
+        <item>@string/vodka</item>
+        <item>@string/tequila</item>
+        <item>@string/brandy</item>
+        <item>@string/whiskey_light</item>
+        <item>@string/whiskey_medium</item>
+        <item>@string/whiskey_hard</item>
+        <item>@string/rum</item>
+        <item>@string/absinthe</item>
+        <item>@string/other</item>
+    </string-array>
 </resources>

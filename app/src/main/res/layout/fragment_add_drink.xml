@@ -1,6 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/space_screen_vertical"
+            android:paddingBottom="@dimen/space_screen_vertical"
+            android:paddingRight="@dimen/space_screen_horizontal"
+            android:paddingLeft="@dimen/space_screen_horizontal">
+            <Spinner
+                android:id="@+id/drink_add_spinner_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown"/>
 
-</android.support.constraint.ConstraintLayout>
+            <RelativeLayout
+                android:id="@+id/drink_add_ets"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/drink_add_spinner_type"
+                android:gravity="center_horizontal">
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/drink_add_drunk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_screen_vertical">
+
+                    <EditText
+                        android:id="@+id/drink_add_et_drunk"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="5"
+                        android:inputType="number"
+                        android:hint="@string/value_milligrams"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/drink_add_alcohol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/drink_add_drunk"
+                    android:layout_marginLeft="@dimen/space_screen_horizontal"
+                    android:layout_marginTop="@dimen/space_screen_vertical">
+
+                    <EditText
+                        android:id="@+id/drink_add_et_alcohol"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="5"
+                        android:inputType="number"
+                        android:hint="@string/alcohol_in_percent"/>
+                </android.support.design.widget.TextInputLayout>
+            </RelativeLayout>
+            <Button
+                android:id="@+id/drink_add_btn_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/drink_add_ets"
+                android:layout_marginTop="@dimen/space_screen_vertical"
+                android:text="@string/save"/>
+        </RelativeLayout>
+    </ScrollView>
+</layout>

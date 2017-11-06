@@ -1,6 +1,10 @@
 package com.devguys.itrevolutionhackaton.util.drink;
 
+import android.content.res.Resources;
 import android.support.annotation.IntDef;
+
+import com.devguys.itrevolutionhackaton.ITRevolutionApp;
+import com.devguys.itrevolutionhackaton.R;
 
 import java.util.Hashtable;
 
@@ -65,38 +69,73 @@ public class DrinkDataset {
         this.alcoholTurnoversMax = alcoholTurnoversMax;
     }
 
+    public static @DrinkType int getType(String name){
+        if(name.equals(getName(TYPE_KVASS))){
+            return TYPE_KVASS;
+        } else if(name.equals(getName(TYPE_BEER_LIGHT))){
+            return TYPE_BEER_LIGHT;
+        } else if(name.equals(getName(TYPE_BEER_DARK))){
+            return TYPE_BEER_DARK;
+        } else if(name.equals(getName(TYPE_VINE))){
+            return TYPE_VINE;
+        } else if(name.equals(getName(TYPE_TINCTURE))){
+            return TYPE_TINCTURE;
+        } else if(name.equals(getName(TYPE_LIQUOR))){
+            return TYPE_LIQUOR;
+        } else if(name.equals(getName(TYPE_VODKA))){
+            return TYPE_VODKA;
+        } else if(name.equals(getName(TYPE_TEQUILA))){
+            return TYPE_TEQUILA;
+        } else if(name.equals(getName(TYPE_BRANDY))){
+            return TYPE_BRANDY;
+        } else if(name.equals(getName(TYPE_WHISKEY_LIGHT))){
+            return TYPE_WHISKEY_LIGHT;
+        } else if(name.equals(getName(TYPE_WHISKEY_MEDIUM))){
+            return TYPE_WHISKEY_MEDIUM;
+        } else if(name.equals(getName(TYPE_WHISKEY_HARD))){
+            return TYPE_WHISKEY_HARD;
+        } else if(name.equals(getName(TYPE_RUM))){
+            return TYPE_RUM;
+        } else if(name.equals(getName(TYPE_ABSINTHE))){
+            return TYPE_ABSINTHE;
+        } else{
+            return TYPE_OTHER;
+        }
+    }
+
     public static String getName(@DrinkType int drinkType) {
+        Resources resources = ITRevolutionApp.get().getResources();
         switch (drinkType) {
             case TYPE_KVASS:
-                return "Kvass";
+                return resources.getString(R.string.kvas);
             case TYPE_BEER_LIGHT:
-                return "Beer Light";
+                return resources.getString(R.string.beer_light);
             case TYPE_BEER_DARK:
-                return "Beer dark";
+                return resources.getString(R.string.beer_dark);
             case TYPE_VINE:
-                return "Vine";
+                return resources.getString(R.string.vine);
             case TYPE_TINCTURE:
-                return "Tincture";
+                return resources.getString(R.string.tincture);
             case TYPE_LIQUOR:
-                return "Liquor";
+                return resources.getString(R.string.liquor);
             case TYPE_VODKA:
-                return "Vodka";
+                return resources.getString(R.string.vodka);
             case TYPE_TEQUILA:
-                return "Tequila";
+                return resources.getString(R.string.tequila);
             case TYPE_BRANDY:
-                return "Brandy";
+                return resources.getString(R.string.brandy);
             case TYPE_WHISKEY_LIGHT:
-                return "Whiskey Light";
+                return resources.getString(R.string.whiskey_light);
             case TYPE_WHISKEY_MEDIUM:
-                return "Whiskey Medium";
+                return resources.getString(R.string.whiskey_medium);
             case TYPE_WHISKEY_HARD:
-                return "Whiskey Hard";
+                return resources.getString(R.string.whiskey_hard);
             case TYPE_RUM:
-                return "Rum";
+                return resources.getString(R.string.rum);
             case TYPE_ABSINTHE:
-                return "Absinthe";
+                return resources.getString(R.string.absinthe);
             case TYPE_OTHER:
-                return "Other";
+                return resources.getString(R.string.other);
         }
 
         return "Other";
